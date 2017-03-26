@@ -51,7 +51,7 @@
             <a>家长版</a>
           </td>
           <td align="right" style="padding:0px 15px 0px 0px;" >
-            <x-button type="primary"  action-type="button"   @click.native="toDownload()">下载</x-button>
+            <x-button type="primary"  action-type="button"   @click.native="toOtherUrl()">下载</x-button>
           </td>
         </tr>
       </table>
@@ -126,8 +126,12 @@ export default {
 
   },methods: {
         toDownload: function() {
-            alert("下载");
+           alert("下载");
             console.log("will download");
+
+        },
+        toOtherUrl: function() {
+          window.open("http://www.baidu.com");
         }
    }
 }
