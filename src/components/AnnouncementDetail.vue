@@ -104,11 +104,16 @@ export default {
     Scroller,
     XButton
   },mounted() {
+    var url;
     //http://localhost:8080/#/?id=8879
-    //http://123.206.43.102:8080/support/announcement/announcementList?type=1&page=1&rows=100&announid=107
-      this.$http.jsonp('http://localhost:8081/videoTime/getVideoControlTime?schoolid=1&classid=')
+//    url = "http://123.206.43.102:8080/support/announcement/announcementList";
+    // url = "http://yestp.com/api/attendance/getAllLocation";
+      url = "http://localhost:8081/attendance/getAllLocation";
+
+
+      this.$http.jsonp(url)
         .then(function (response) {
-          console.log(response.data)
+          console.log(response)
           this.datas = response.data.obj;
       }, function (response) {
           // error callback
