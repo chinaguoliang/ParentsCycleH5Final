@@ -2,7 +2,6 @@
 
   <div>
 
-    <scroller height="-120" lockX=false scrollbarY=true>
       <div class="div-padding">
 
         <swiper :list="list" :min-moving-distance="20" auto="" direction="horizontal" height="200px"></swiper>
@@ -28,13 +27,14 @@
         </table>
 
         <a>传递过来的id为{{id}}</a>
+        <br/>
+        <a>请求过来的数据为:</a>
         <li v-for="item in datas">
-          {{item.latitude}}
+          {{item.title}}
         </li>
 
 
       </div>
-    </scroller>
 
 
 
@@ -106,12 +106,12 @@ export default {
   },mounted() {
     var url;
     //http://localhost:8080/#/?id=8879
-//    url = "http://123.206.43.102:8080/support/announcement/announcementList";
-    // url = "http://yestp.com/api/attendance/getAllLocation";
-      url = "http://localhost:8081/attendance/getAllLocation";
+    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100";
+     //url = "http://123.207.140.176/api/attendance/getAllLocation";
+      //url = "http://localhost:8081/attendance/getAllLocation";
 
 
-      this.$http.jsonp(url)
+      this.$http.post(url)
         .then(function (response) {
           console.log(response)
           this.datas = response.data.obj;
@@ -131,7 +131,7 @@ export default {
 
         },
         toOtherUrl: function() {
-          window.open("http://www.baidu.com");
+          window.open("http://yestp.com?id=998&name=889");
         }
    }
 }
