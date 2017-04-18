@@ -118,6 +118,15 @@ export default {
           this.datas = response.data.obj;
           this.title = this.datas[0].title;
           this.content = this.datas[0].announcement;
+
+          var imgArray = this.datas[0].imags.split(",");
+          var resultArray = [];
+          for (var i=0 ; i< imgArray.length ; i++){
+            var imgObj = {url:"",img:imgArray[i],title:""};
+            resultArray.push(imgObj);
+          }
+          this.list = resultArray;
+
       }, function (response) {
           // error callback
         console.log('failed')
