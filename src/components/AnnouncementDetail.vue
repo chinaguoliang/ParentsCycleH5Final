@@ -74,17 +74,9 @@ export default {
       msg: 'ParentsCycle',
       datas:'',
       list: [{
-        url: 'http://www.baidu.com',
-        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489388986814&di=b1e6c9b10e2f622cb2702df59e0fd009&imgtype=0&src=http%3A%2F%2Fpic1.5442.com%3A82%2F2015%2F0409%2F01%2F15.jpg%2521960.jpg',
-        title: '如何手制一份秋意的茶？'
-      }, {
-        url: 'http://www.baidu.com',
-        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489388986813&di=ed1de05af89e6a6b95597d49a1105a12&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F17%2F14%2F25%2F43Y58PICfJB_1024.jpg',
-        title: '茶包VS原叶茶'
-      }, {
-        url: 'http://www.baidu.com',
-        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489388986813&di=4aac1d6a4d6bfa16a10210c4ffb98e31&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F20120713j%2F867.jpg',
-        title: '播下茶籽，明春可发芽？'
+        url: '',
+        img: '',
+        title: ''
       }],
       id:'',
       schoolname:'test schoolname',
