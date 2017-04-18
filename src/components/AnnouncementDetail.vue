@@ -91,7 +91,7 @@ export default {
       schoolphone:'test schoolphone',
       schooladdress:'test schooladdress',
       title:'test tile',
-      content:'test content hksdjfklsdjfksldfjskli   jssss         dsfsf          sdfsdf              niininisdfsdf     sdfsdfs '
+      content:'test content '
     }
   },components:{
     Group,
@@ -106,7 +106,7 @@ export default {
   },mounted() {
     var url;
     //http://localhost:8080/#/?id=8879
-    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100";
+    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=136";
      //url = "http://123.207.140.176/api/attendance/getAllLocation";
       //url = "http://localhost:8081/attendance/getAllLocation";
 
@@ -115,6 +115,8 @@ export default {
         .then(function (response) {
           console.log(response)
           this.datas = response.data.obj;
+          this.title = this.datas[0].title;
+          this.content = this.datas[0].announcement;
       }, function (response) {
           // error callback
         console.log('failed')
