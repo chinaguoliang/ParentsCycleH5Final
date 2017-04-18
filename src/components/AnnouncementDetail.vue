@@ -106,10 +106,11 @@ export default {
   },mounted() {
     var url;
     //http://localhost:8080/#/?id=8879
-    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=136";
+    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=";
      //url = "http://123.207.140.176/api/attendance/getAllLocation";
       //url = "http://localhost:8081/attendance/getAllLocation";
-
+       this.id = this.$route.query.announid;
+       url = url + this.id;
 
       this.$http.post(url)
         .then(function (response) {
@@ -122,18 +123,30 @@ export default {
         console.log('failed')
       });
 
-      this.id = this.$route.query.id;
+
       console.log("the id" + this.$route.query.id + " the name:" + this.$route.query.name);
       console.log("hah finish");
 
   },methods: {
         toDownload: function() {
-           alert("下载");
+
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+                alert("下载android");
+            } else if (isIos) {
+                alert("下载ios");
+            } else {
+                alert("下载android");
+            }
+
+
             console.log("will download");
 
         },
         toOtherUrl: function() {
-          window.open("http://yestp.com?id=998&name=889");
+            window.open("http://yestp.com?id=998&name=889");
         }
    }
 }
