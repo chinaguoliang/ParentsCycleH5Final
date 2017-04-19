@@ -135,9 +135,10 @@ export default {
             var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (isAndroid) {
-                alert("下载android");
+                alert("下载android1");
             } else if (isIos) {
-                alert("下载ios");
+                //alert("下载ios");
+                window.open("http://yestp.com?id=998&name=889");
             } else {
                 alert("下载android");
             }
@@ -187,7 +188,7 @@ a {
 .div-padding {
   padding-right: 10px;
   padding-left: 10px;
-  padding-bottom: 300px;
+  padding-bottom: 20px;
 
 }
 
