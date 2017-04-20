@@ -26,12 +26,12 @@
           </tr>
         </table>
 
-        <a>传递过来的id为{{id}}</a>
-        <br/>
-        <a>请求过来的数据为:</a>
-        <li v-for="item in datas">
-          {{item.title}}
-        </li>
+        <!--<a>传递过来的id为{{id}}</a>-->
+        <!--<br/>-->
+        <!--<a>请求过来的数据为:</a>-->
+        <!--<li v-for="item in datas">-->
+          <!--{{item.title}}-->
+        <!--</li>-->
 
 
       </div>
@@ -110,6 +110,9 @@ export default {
           this.datas = response.data.obj;
           this.title = this.datas[0].title;
           this.content = this.datas[0].announcement;
+          this.schooladdress = this.datas[0].detailedaddress;
+          this.schoolphone = this.datas[0].contactnumber;
+          this.schoolname = this.datas[0].schoolname;
 
           var imgArray = this.datas[0].imags.split(",");
           var resultArray = [];
