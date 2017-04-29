@@ -79,8 +79,8 @@ export default {
         title: ''
       }],
       id:'',
-      schoolname:'test schoolname',
-      schoolphone:'test schoolphone',
+      schoolname:'test schoolname1',
+      schoolphone:'test schoolphone2',
       schooladdress:'test schooladdress',
       title:'test tile',
       content:'test content '
@@ -104,32 +104,39 @@ export default {
        this.id = this.$route.query.announid;
        url = url + this.id;
 
-      this.$http.post(url)
+    //  this.$http.post(url)
+      //  .then(function (response) {
+        //  console.log(response)
+         // this.datas = response.data.obj;
+         // this.title = this.datas[0].title;
+         // this.content = this.datas[0].announcement;
+         // this.schooladdress = this.datas[0].detailedaddress;
+         // this.schoolphone = this.datas[0].contactnumber;
+         // this.schoolname = this.datas[0].schoolname;
+
+         // var imgArray = this.datas[0].imags.split(",");
+         // var resultArray = [];
+         // for (var i=0 ; i< imgArray.length ; i++){
+          //  var imgObj = {url:"",img:imgArray[i],title:""};
+           // resultArray.push(imgObj);
+         // }
+         // this.list = resultArray;
+
+     // }, function (response) {
+          // error callback
+       // console.log('failed')
+     // });
+
+      var locationUrl = "https://yestp.com/api/attendance/getAllLocation";
+      this.$http.jsonp(locationUrl)
         .then(function (response) {
           console.log(response)
-          this.datas = response.data.obj;
-          this.title = this.datas[0].title;
-          this.content = this.datas[0].announcement;
-          this.schooladdress = this.datas[0].detailedaddress;
-          this.schoolphone = this.datas[0].contactnumber;
-          this.schoolname = this.datas[0].schoolname;
-
-          var imgArray = this.datas[0].imags.split(",");
-          var resultArray = [];
-          for (var i=0 ; i< imgArray.length ; i++){
-            var imgObj = {url:"",img:imgArray[i],title:""};
-            resultArray.push(imgObj);
-          }
-          this.list = resultArray;
-
+          this.schooladdress = response.data.msg;
       }, function (response) {
           // error callback
-        console.log('failed')
+        console.log('location request  failed')
       });
 
-
-      console.log("the id" + this.$route.query.id + " the name:" + this.$route.query.name);
-      console.log("hah finish");
 
   },methods: {
         toDownload: function() {
