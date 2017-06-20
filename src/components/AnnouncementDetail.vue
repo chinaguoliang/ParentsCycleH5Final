@@ -98,44 +98,44 @@ export default {
   },mounted() {
     var url;
     //http://localhost:8080/#/?id=8879
-    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=";
+    url = "http://123.206.43.102:8080/support-token/announcement/announcementList?page=1&rows=100&announid=";
      //url = "http://123.207.140.176/api/attendance/getAllLocation";
       //url = "http://localhost:8081/attendance/getAllLocation";
        this.id = this.$route.query.announid;
        url = url + this.id;
 
-    //  this.$http.post(url)
-      //  .then(function (response) {
-        //  console.log(response)
-         // this.datas = response.data.obj;
-         // this.title = this.datas[0].title;
-         // this.content = this.datas[0].announcement;
-         // this.schooladdress = this.datas[0].detailedaddress;
-         // this.schoolphone = this.datas[0].contactnumber;
-         // this.schoolname = this.datas[0].schoolname;
-
-         // var imgArray = this.datas[0].imags.split(",");
-         // var resultArray = [];
-         // for (var i=0 ; i< imgArray.length ; i++){
-          //  var imgObj = {url:"",img:imgArray[i],title:""};
-           // resultArray.push(imgObj);
-         // }
-         // this.list = resultArray;
-
-     // }, function (response) {
-          // error callback
-       // console.log('failed')
-     // });
-
-      var locationUrl = "https://yestp.com/api/attendance/getAllLocation";
-      this.$http.jsonp(locationUrl)
+      this.$http.post(url)
         .then(function (response) {
           console.log(response)
-          this.schooladdress = response.data.msg;
+          this.datas = response.data.obj;
+          this.title = this.datas[0].title;
+          this.content = this.datas[0].announcement;
+          this.schooladdress = this.datas[0].detailedaddress;
+          this.schoolphone = this.datas[0].contactnumber;
+          this.schoolname = this.datas[0].schoolname;
+
+          var imgArray = this.datas[0].imags.split(",");
+          var resultArray = [];
+          for (var i=0 ; i< imgArray.length ; i++){
+            var imgObj = {url:"",img:imgArray[i],title:""};
+            resultArray.push(imgObj);
+          }
+          this.list = resultArray;
+
       }, function (response) {
-          // error callback
-        console.log('location request  failed')
+
+        console.log('failed')
       });
+
+//      var locationUrl = "http://123.206.43.102:8080/support-token/announcement/announcementList?rows=1000&schoolid=69&token=eafc92a4de84975e451708ecebcba61f&type=1&page=1&id=305&";
+//      this.$http.get(locationUrl)
+//        .then(function (response) {
+//          console.log(response)
+//          this.schooladdress = response.data.msg;
+//      }, function (response) {
+//          // error callback
+//        console.log('location request  failed')
+//      });
 
 
   },methods: {
