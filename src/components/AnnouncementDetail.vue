@@ -6,16 +6,10 @@
       <table height="100%" width="100%">
         <tr>
           <td align="left" style="padding:0px 0px 0px 15px;">
-            <a>教师版</a>
+            <a v-model="versionName">{{versionName}}</a>
           </td>
-          <td align="right" style="padding:0px 15px 0px 0px;">
-            <x-button type="primary" action-type="button" @click.native="toDownload(1)">下载</x-button>
-          </td>
-          <td align="left" style="padding:0px 0px 0px 15px;">
-            <a>家长版</a>
-          </td>
-          <td align="right" style="padding:0px 15px 0px 0px;">
-            <x-button type="primary" action-type="button" @click.native="toDownload(2)">下载</x-button>
+          <td align="right" style="padding:0px 15px 0px 0px;width: 8rem">
+            <x-button type="primary" action-type="button" @click.native="toDownload()">下载</x-button>
           </td>
         </tr>
       </table>
@@ -80,6 +74,8 @@
           title: ''
         }],
         id: '',
+        version:-1,
+        versionName:'',
         schoolname: 'test schoolname1',
         schoolphone: 'test schoolphone2',
         schooladdress: 'test schooladdress',
@@ -100,6 +96,15 @@
       var url;
       url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=";
       this.id = this.$route.query.announid;
+      this.version = this.$route.query.version; // 1：教师版  2:家长版
+      if (parseInt(this.version) === 1) {
+          this.versionName = "教师版";
+      } else if (parseInt(this.version) === 2) {
+          this.versionName = "家长版";
+      }
+
+      console.log("the version:" + this.versionName);
+
       url = url + this.id;
 
       this.$http.post(url)
@@ -137,11 +142,11 @@
 
 
     }, methods: {
-      toDownload: function (flag) {
+      toDownload: function () {
         var u = navigator.userAgent;
         var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
         var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        if (flag === 1) {
+        if (parseInt(this.version) === 1) {
           //教师版
           if (isAndroid) {
             alert("下载android1");
@@ -152,7 +157,7 @@
           } else {
             window.open("http://123.207.140.176/app-school.apk");
           }
-        } else if (flag === 2) {
+        } else if (parseInt(this.version) === 2) {
           //家长版
           if (isAndroid) {
             alert("下载android1");
