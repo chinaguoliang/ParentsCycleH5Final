@@ -45,13 +45,13 @@
             <a>教师版</a>
           </td>
           <td align="right" style="padding:0px 15px 0px 0px;"  >
-            <x-button type="primary"  action-type="button"   @click.native="toDownload()">下载</x-button>
+            <x-button type="primary"  action-type="button"   @click.native="toDownload(1)">下载</x-button>
           </td>
           <td align="left" style="padding:0px 0px 0px 15px;">
             <a>家长版</a>
           </td>
           <td align="right" style="padding:0px 15px 0px 0px;" >
-            <x-button type="primary"  action-type="button"   @click.native="toOtherUrl()">下载</x-button>
+            <x-button type="primary"  action-type="button"   @click.native="toDownload(2)">下载</x-button>
           </td>
         </tr>
       </table>
@@ -97,12 +97,9 @@ export default {
     XButton
   },mounted() {
     var url;
-    //http://localhost:8080/#/?id=8879
-    url = "http://123.206.43.102:8080/support-token/announcement/announcementList?page=1&rows=100&announid=";
-     //url = "http://123.207.140.176/api/attendance/getAllLocation";
-      //url = "http://localhost:8081/attendance/getAllLocation";
-       this.id = this.$route.query.announid;
-       url = url + this.id;
+    url = "http://123.206.43.102:8080/support/announcement/announcementList?page=1&rows=100&announid=";
+    this.id = this.$route.query.announid;
+    url = url + this.id;
 
       this.$http.post(url)
         .then(function (response) {
@@ -139,19 +136,38 @@ export default {
 
 
   },methods: {
-        toDownload: function() {
-
-            var u = navigator.userAgent;
-            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-            var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-            if (isAndroid) {
+        toDownload: function(flag) {
+          var u = navigator.userAgent;
+          var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+          var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (flag === 1) {
+                //教师版
+              if (isAndroid) {
                 alert("下载android1");
-            } else if (isIos) {
+                window.open("http://123.207.140.176/app-school.apk");
+              } else if (isIos) {
                 //alert("下载ios");
-                window.open("http://yestp.com?id=998&name=889");
-            } else {
-                alert("下载android");
+                window.open("https://itunes.apple.com/cn/app/父母圈-教师版/id1219770725?mt=8");
+              } else {
+                window.open("http://123.207.140.176/app-school.apk");
+              }
+            } else if (flag === 2) {
+                //家长版
+              if (isAndroid) {
+                alert("下载android1");
+                window.open("http://123.207.140.176/app-home.apk");
+              } else if (isIos) {
+                //alert("下载ios");
+                window.open("https://itunes.apple.com/cn/app/父母圈-家长版/id1219770954?mt=8");
+              } else {
+                window.open("http://123.207.140.176/app-home.apk");
+              }
             }
+
+
+
+
+
 
 
             console.log("will download");
